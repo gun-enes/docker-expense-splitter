@@ -18,8 +18,8 @@ Before you begin, ensure you have Docker installed on your system. If you do not
 ### Download the Application
 Clone the repository to your local machine using:
 ```bash
-git clone [repository-url]
-cd [repository-directory]
+git clone https://github.com/gun-enes/docker-expense-splitter
+cd docker-expense-splitter-main
 ```
 
 ### Build the Containers
