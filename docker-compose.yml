@@ -1,0 +1,94 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    volumes:
+       - mongo-data:/data/db
+       - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rootuser 
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: test
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network   
+  login:
+    build: ./login
+    ports:
+      - "5000:5000"
+    environment:
+      MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
+    depends_on:
+      - mongodb
+    networks:
+      - app-network  
+  dashboard:
+    build: ./dashboard
+    ports:
+      - "5001:5000"
+    environment:
+      MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
+    depends_on:
+      - mongodb
+    networks:
+      - app-network  
+  add_expense_group:
+    build: ./add_expense_group
+    ports:
+      - "5002:5000"
+    environment:
+      MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
+    depends_on:
+      - mongodb
+    networks:
+      - app-network  
+  expense_group:
+    build: ./expense_group
+    ports:
+      - "5003:5000"    
+    environment:
+      MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
+    depends_on:
+      - mongodb
+    networks:
+      - app-network  
+  add_expense:
+    build: ./add_expense
+    ports:
+      - "5004:5000"
+    environment:
+      MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
+    depends_on:
+      - mongodb
+    networks:
+      - app-network  
+  view_expense:
+    build: ./view_expenses
+    ports:
+      - "5005:5000"
+    environment:
+      MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
+    depends_on:
+      - mongodb
+    networks:
+      - app-network  
+  sign_up:
+    build: ./sign_up
+    ports:
+      - "5006:5000"
+    environment:
+      MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
+    depends_on:
+      - mongodb
+    networks:
+      - app-network  
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data: 
+    driver: local 
