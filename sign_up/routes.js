@@ -9,7 +9,7 @@ const { render } = require('ejs');
 router.get('/signup', async (req, res) => {
   try {
     const locals = {
-      title: "Login Page",
+      title: "Sign Up",
       description: "Simple Blog created with NodeJs, Express & MongoDb."
     }
 

@@ -8,8 +8,8 @@ const { render } = require('ejs');
 
 router.get('/', async (req,res) => {
 	const locals = {
-		title: "CENGden",
-		description: "An online marketplace application"
+		title: "Expense Splitter",
+		description: ""
 	};
 	try{
 		res.render('./login', {locals});
@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
 router.get('/loginfailed', async (req, res) => {
   try {
     const locals = {
-      title: 'loginfailed',
+      title: 'Login Failed',
       description: 'Simple Blog created with NodeJs, Express & MongoDb.'
     }
     res.render('loginfailed', {

@@ -12,8 +12,6 @@ services:
       MONGO_INITDB_DATABASE: test 
     ports:
       - "27017:27017"
-    networks:
-      - app-network   
   login:
     build: ./login
     ports:
@@ -22,8 +20,6 @@ services:
       MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
     depends_on:
       - mongodb
-    networks:
-      - app-network  
   dashboard:
     build: ./dashboard
     ports:
@@ -32,8 +28,6 @@ services:
       MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
     depends_on:
       - mongodb
-    networks:
-      - app-network  
   add_expense_group:
     build: ./add_expense_group
     ports:
@@ -42,8 +36,6 @@ services:
       MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
     depends_on:
       - mongodb
-    networks:
-      - app-network  
   expense_group:
     build: ./expense_group
     ports:
@@ -52,8 +44,6 @@ services:
       MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
     depends_on:
       - mongodb
-    networks:
-      - app-network  
   add_expense:
     build: ./add_expense
     ports:
@@ -62,8 +52,6 @@ services:
       MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
     depends_on:
       - mongodb
-    networks:
-      - app-network  
   view_expense:
     build: ./view_expenses
     ports:
@@ -72,8 +60,6 @@ services:
       MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
     depends_on:
       - mongodb
-    networks:
-      - app-network  
   sign_up:
     build: ./sign_up
     ports:
@@ -82,12 +68,6 @@ services:
       MONGODB_URI: mongodb://rootuser:rootpassword@mongodb:27017/test
     depends_on:
       - mongodb
-    networks:
-      - app-network  
-
-networks:
-  app-network:
-    driver: bridge
 
 volumes:
   mongo-data: 

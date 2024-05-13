@@ -10,7 +10,7 @@ const { render } = require('ejs');
 const authMiddleware = (req, res, next ) => {
   const token = req.cookies.token;
   if(!token) {
-    return res.render('http://localhost:5000/');
+    return res.redirect('http://localhost:5000/');
   }
   try { 
     const decoded = jwt.verify(token, jwtSecret);
@@ -29,7 +29,7 @@ router.get('/logout', (req, res) => {
 router.get('/expenses/:id', authMiddleware, async (req, res) => {
   try {
     const locals = {
-      title: 'Expense Splitter',
+      title: 'View Expenses',
       description: ''
     }
     const data1 = await expenseGroup.findById(req.params.id);
