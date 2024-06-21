@@ -51,6 +51,6 @@ If you encounter issues with Docker:
   ```
 
 ## Contact
-For support or queries, reach out to [contact-email].
+For support or queries, reach out to gun.enes@outlook.com.
 
 Enjoy managing your expenses with ease!
